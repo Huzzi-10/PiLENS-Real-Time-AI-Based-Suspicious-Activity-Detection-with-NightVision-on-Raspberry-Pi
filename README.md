@@ -5,7 +5,11 @@
 
 ## Overview
 
-PiLENS is a low-cost, portable, and intelligent surveillance system designed to enhance real-time security monitoring in low-light and night-time environments. The system leverages Raspberry Pi hardware, IR cameras, and deep learning-based AI models to detect suspicious activities automatically, providing instant alerts to the user. By combining edge computing, computer vision, and night vision technology, PiLENS aims to offer an affordable alternative to traditional high-end surveillance systems.
+PiLENS is a Raspberry Pi-based deep learning enhanced night vision surveillance system I developed to provide intelligent, real-time suspicious activity detection in low-light and night-time environments. It combines the edge computing power of the Raspberry Pi with advanced computer vision and deep learning algorithms to create a smart, cost-effective security solution. Unlike conventional CCTV systems that rely on human monitoring or basic motion detection, PiLENS uses AI to identify potentially suspicious behavior with better accuracy and fewer false alarms. By integrating infrared imaging and night vision enhancement, it works reliably even in tough lighting conditions where regular cameras struggle.
+<br>
+The main goal of PiLENS is to make high-tech surveillance affordable and accessible for places like academic institutions, residential areas, warehouses, and other security-sensitive spots. It bridges the gap between cost and intelligence by offering portable, scalable monitoring that minimizes manual effort. With real-time video processing, automated detection, and alert generation, it boosts situational awareness. Its modular design allows for expansions like audio anomaly detection, wireless modules, cloud integration, and multi-camera support. Overall, PiLENS is a practical step toward smarter surveillance that's both user-friendly and technologically solid.
+<br>
+What makes PiLENS stand out is its multi-mode detection system, where it handles basic person alerts, intruder face recognition, and advanced suspicious activity analysis all in one. It also has selective storage to save only suspicious clips, saving space, and secure remote access via Tailscale for hack-proof viewing from anywhere. Running at 5 FPS on low-cost hardware, it's optimized for efficiency without compromising performance.
 
 Key components include:
 - Hardware: Raspberry Pi 5 (8GB RAM) as the core processor, Raspberry Pi Camera Module 3 (12MP NOIR with IR LEDs for nightvision), LEDs and buzzer for local alerts.
@@ -18,7 +22,8 @@ This project aims to provide a low-cost, portable solution for enhanced security
 
 ### Problem Statement:
 
-- Traditional surveillance systems often face the following challenges:
+Traditional surveillance systems often face the following challenges:
+
 - High costs of professional security cameras and monitoring infrastructure
 - Limited intelligence, relying on human monitoring or motion detection only
 - Poor low-light or night-time performance, making them ineffective during critical hours
@@ -40,7 +45,7 @@ PiLENS combines hardware and software solutions:
 
 **2. Software & AI Components:**
 
-- Deep Learning models (e.g., CNN, YOLO) for real-time suspicious activity detection
+- Deep Learning models (e.g., YOLO, CNN, LSTM) for real-time suspicious activity detection
 - Python and OpenCV for video processing and preprocessing
 - Optional Flask/Dashboard for remote monitoring
 - Alert system via buzzer, email, or mobile notification
