@@ -15,6 +15,8 @@ Key components include:
 This project aims to provide a low-cost, portable solution for enhanced security, with potential extensions for audio detection and long-range wireless connectivity.
 
 </br>
+![Motivational Scenario](Figures/Motivational%20Scenario.jpg)
+</br>
 
 ## Key Features
 - **Multi-Mode Detection**: Three modes for flexible security:
