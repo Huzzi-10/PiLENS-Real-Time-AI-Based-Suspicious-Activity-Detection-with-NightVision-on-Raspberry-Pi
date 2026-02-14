@@ -15,6 +15,7 @@ Key components include:
 
 This project aims to provide a low-cost, portable solution for enhanced security, with potential extensions for audio detection and long-range wireless connectivity.
 
+
 ### Problem Statement:
 
 - Traditional surveillance systems often face the following challenges:
@@ -25,7 +26,6 @@ This project aims to provide a low-cost, portable solution for enhanced security
 
 PiLENS addresses these problems by integrating AI-based activity detection with night vision capabilities on a compact Raspberry Pi platform, providing a smart, reliable, and cost-effective solution.
 
-</br>
 
 ### Proposed Solution:
 
@@ -51,6 +51,40 @@ PiLENS combines hardware and software solutions:
 - Operates reliably in low-light/night conditions
 - Minimal false alarms due to AI-based detection
 - Portable, low-cost setup suitable for universities, offices, homes, and restricted areas
+
+
+### Core Features:
+
+- Real-time AI-based detection of suspicious activities
+- Night vision enabled through IR camera and LEDs
+- Low-cost, compact, and portable design
+- Automated alert system (optional integration with mobile or cloud)
+- Expandable to multi-camera and wireless setups
+- Easy setup and lightweight software requirements
+
+
+### Target Users / Applications:
+
+- University campuses and dormitories
+- Warehouses and storage facilities
+- Private homes for enhanced security
+- Public areas requiring intelligent night surveillance
+- Experimental research setups in AI and computer vision
+
+
+### Future Extensions / Scalability:
+
+- Integration of audio anomaly detection for enhanced security
+- Long-range wireless connectivity for remote monitoring
+- Cloud storage for video logs and alerts
+- Mobile applications for live monitoring
+- Multi-camera AI fusion for comprehensive coverage
+- Real-time analytics dashboards
+
+
+### Key Takeaways:
+
+PiLENS is not just a surveillance tool; it is a smart, AI-powered security system designed to provide reliable detection, low-cost implementation, and scalability. Its combination of Raspberry Pi hardware, deep learning models, and night vision makes it ideal for modern security challenges, research applications, and real-life deployment scenarios.
 
 </br>
 
