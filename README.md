@@ -34,6 +34,10 @@ This project aims to provide a low-cost, portable solution for enhanced security
 
 </br>
 
+![Work_Flow_Digram](Figures/Work_Flow.png)
+
+</br>
+
 ## Hardware Requirements
 - Raspberry Pi 5 (8GB RAM)
 - Raspberry Pi Camera Module 3 (12MP NOIR with IR LEDs + LDR illuminator)
@@ -52,12 +56,12 @@ This project aims to provide a low-cost, portable solution for enhanced security
 </br>
 
 ## Installation & Setup
-1. Clone the repository: `git clone https://github.com/Huzzi-10/VigilantEye.git`
-2. Navigate to the directory: `cd VigilantEye`
+1. Clone the repository: `git clone https://github.com/Huzzi-10/PiLENS-Real-Time-AI-Based-Suspicious-Activity-Detection-with-NightVision-on-Raspberry-Pi.git`
+2. Navigate to the directory: `cd [Folder Name]`
 3. Install dependencies: `pip install -r requirements.txt` (or above command).
 4. Configure email in code: Edit SENDER_EMAIL, PASSWORD, RECEIVER_EMAIL.
 5. For Tailscale: Install Tailscale on RPi, run `sudo tailscale up` for secure IP.
-6. Run the program: `python VigilantEye.py`
+6. Run the program: `python [Program_File].py`
 
 </br>
 
