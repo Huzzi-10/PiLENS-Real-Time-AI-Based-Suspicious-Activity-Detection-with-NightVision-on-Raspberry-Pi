@@ -92,6 +92,7 @@ PiLENS combines hardware and software solutions:
 PiLENS is not just a surveillance tool; it is a smart, AI-powered security system designed to provide reliable detection, low-cost implementation, and scalability. Its combination of Raspberry Pi hardware, deep learning models, and night vision makes it ideal for modern security challenges, research applications, and real-life deployment scenarios.
 
 </br>
+
 ## Motivational Scenario
 ### The Problem: Growing Security Concerns
 
