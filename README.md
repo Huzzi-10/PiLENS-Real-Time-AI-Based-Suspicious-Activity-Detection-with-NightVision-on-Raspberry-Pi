@@ -150,6 +150,41 @@ Unlike traditional systems, PiLENS does not rely solely on human observation. In
 
 </br>
 
+## Problem Statement
+
+Traditional surveillance systems in universities and public institutions rely heavily on continuous human monitoring of CCTV footage. This manual monitoring approach is inefficient, prone to human error, and often results in delayed response to suspicious activities. Security personnel cannot effectively observe multiple camera feeds simultaneously for extended periods, which increases the risk of unnoticed incidents.</br>
+
+Furthermore, most existing surveillance systems lack intelligent behavior analysis and automated alert mechanisms. They only record footage without actively identifying abnormal or suspicious patterns. This creates a significant gap between incident occurrence and response time.</br>
+
+There is a need for an intelligent, automated, and real-time surveillance system that can monitor environments continuously, detect suspicious activities using AI techniques, and instantly alert authorities. The system should also function effectively during low-light or nighttime conditions.</br>
+
+VigilantEye aims to address these challenges by integrating artificial intelligence with hardware-based surveillance to provide real-time detection, automated alerts, and enhanced security monitoring.</br>
+
+### Current Situation
+
+Universities rely on CCTV systems that require constant human supervision.
+
+### Problem
+
+Human monitoring is inefficient and error-prone.
+
+### Gap
+
+Existing systems lack AI-based real-time suspicious activity detection.
+
+### Impact
+
+Delayed detection may lead to security threats and property damage.
+
+### Proposed Need
+
+An automated AI-powered surveillance system is required.
+
+
+
+
+
+
 ## Key Features
 - **Multi-Mode Detection**: Three modes for flexible security:
   - Mode 1: Basic person alert with immediate email (time, location, pic/video clip).
