@@ -169,7 +169,40 @@ Delayed detection may lead to security threats and property damage.
 
 An automated AI-powered surveillance system is required.
 
+## System Architecture
 
+The VigilantEye system is designed as an integrated IoT-based surveillance platform that combines hardware components, software modules, and AI-driven processing to enable real-time suspicious activity detection. The architecture is modular, allowing for scalability and future expansions such as audio integration or long-range wireless connectivity. It leverages the edge computing capabilities of the Raspberry Pi to perform on-device analysis, reducing latency and enhancing privacy by minimizing data transmission to external servers. The system is divided into three main layers: Input Layer, Processing Layer, and Output Layer.
+
+### Input Layer
+
+This layer handles data acquisition from IoT devices and sensors. The primary input is the video stream from the Raspberry Pi Camera Module 3 (12MP NOIR with IR LEDs and LDR illuminator), which enables nightvision functionality for low-light environments. The camera captures high-resolution footage at 5 FPS to balance performance and resource usage on the Raspberry Pi 5 (8GB RAM). Additional inputs include potential microphone data for audio detection (e.g., suspicious sounds like glass breaking or shouting), though this is planned for future extensions. Secure remote access is facilitated through Tailscale, which provides a VPN-like IP for worldwide monitoring without compromising security. All inputs are fed directly to the core processing unit, ensuring realtime data flow.
+
+### Processing Layer
+
+At the heart of the system is the Raspberry Pi 5, serving as the central microcontroller and edge device. It processes the input streams using a multi-stage AI pipeline:
+
+- Person/Object Detection: Utilizes the Ultralytics YOLO model to identify persons and generate bounding boxes in the video feed, with a confidence threshold of 0.60 to reduce false positives.
+- Feature Extraction and Analysis: The bounding box data is passed to a Convolutional Neural Network (CNN) for feature extraction (e.g., motion patterns or unusual behaviors). This is followed by Long Short-Term Memory (LSTM) networks via PyTorch for temporal sequence analysis, determining if the activity is normal or suspicious.
+- Multi-Mode Operation: The system operates in three modes:
+  - Mode 1 (Basic Person Alert): Immediate detection of any person triggers an alert without deep analysis.
+  - Mode 2 (Intruder Face Recognition): Uses face recognition to check if the person is authorized; unauthorized triggers specific alerts.
+  - Mode 3 (Advanced Suspicious Detection): Full YOLO-CNN-LSTM pipeline for detailed behavior analysis.
+- Selective Storage: Only suspicious clips are saved to the "Intruders" folder, optimizing storage on the high-resolution camera output.
+- The processing is optimized for 5 FPS to prevent overload on the low-power Raspberry Pi, with all computations performed on-device for edge efficiency.
+
+### Output Layer
+
+This layer manages alerts and user interaction. Upon detection, the system generates multi-modal alerts:
+
+- Email notifications with timestamps, location details, attached snapshots, and video clips (using smtplib for async sending).
+- Local indicators via GPIO-connected red/green LEDs and buzzer for immediate feedback (e.g., red LED and buzzer for intruders).
+- Voice TTS alerts (using pyttsx3 for spoken warnings).
+- The PyQt6-based desktop GUI provides a user interface for starting/stopping monitoring, viewing logs, browsing intruder files, toggling themes (dark/light), and controlling Tailscale/Flask for remote MJPEG streaming (accessible at http://[IP]:8000/video).
+- Logging and notifications are stored securely, with options for future cloud integration.
+
+The architecture emphasizes low-cost, portability, and security, making it suitable for military or civil applications. It uses Flask for streaming and Tailscale for encrypted remote access, ensuring hack-proof operation. Future enhancements include audio anomaly detection and NRF-based long-distance wireless connectivity to extend the system's range.
+
+![Work_Flow_Digram](Figures/Work_Flow.png)
 
 
 
@@ -188,7 +221,7 @@ An automated AI-powered surveillance system is required.
 
 </br>
 
-![Work_Flow_Digram](Figures/Work_Flow.png)
+
 
 </br>
 
