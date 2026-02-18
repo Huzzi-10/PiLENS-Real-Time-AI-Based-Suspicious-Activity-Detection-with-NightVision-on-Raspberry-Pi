@@ -169,6 +169,8 @@ Delayed detection may lead to security threats and property damage.
 
 An automated AI-powered surveillance system is required.
 
+<br>
+
 ## System Architecture
 
 The VigilantEye system is designed as an integrated IoT-based surveillance platform that combines hardware components, software modules, and AI-driven processing to enable real-time suspicious activity detection. The architecture is modular, allowing for scalability and future expansions such as audio integration or long-range wireless connectivity. It leverages the edge computing capabilities of the Raspberry Pi to perform on-device analysis, reducing latency and enhancing privacy by minimizing data transmission to external servers. The system is divided into three main layers: Input Layer, Processing Layer, and Output Layer.
