@@ -237,7 +237,7 @@ The architecture emphasizes low-cost, portability, and security, making it suita
 </br>
 
 ## Software Requirements
-- Python 3.12
+- Python 3.11
 - Libraries: ultralytics (YOLO), picamera2, cv2 (OpenCV), numpy, PyQt6, flask, smtplib, RPi.GPIO (if on RPi)
 - Install: `pip install ultralytics picamera2 opencv-python numpy pyqt6 flask RPi.GPIO`
 - Model: Download "yolo11n.pt" from Ultralytics.
