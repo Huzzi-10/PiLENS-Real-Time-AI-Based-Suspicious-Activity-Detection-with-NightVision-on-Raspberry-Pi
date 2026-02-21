@@ -216,13 +216,13 @@ The architecture emphasizes low-cost, portability, and security, making it suita
   - Mode 3: Advanced suspicious activity analysis via YOLO + CNN + LSTM.
 </br>
 
-![Program_1_Flowchart](Figures/Program 1 Flowchart.jpg)
+![Program_1_Flowchart](Figures/Program_1_Flowchart.jpg)
 
 ### This is the Mode 1 
 
 <br>
 
-![Program_2_Flowchart](Figures/Program 2 Flowchart.jpg)
+![Program_2_Flowchart](Figures/Program_2_Flowchart.jpg)
 
 ### This is the Mode 2
 
