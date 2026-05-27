@@ -121,7 +121,7 @@ An ideal system should:
 This gap between traditional systems and intelligent automation forms the core motivation behind PiLENS.
 
 
-### Our Solution: PiLENS (Vigilant Eye)
+### Our Solution: PiLENS (PiLENS)
 
 PiLENS is an AI-powered smart surveillance system designed to enhance security monitoring using modern embedded hardware and intelligent algorithms.
 
@@ -147,7 +147,7 @@ Furthermore, most existing surveillance systems lack intelligent behavior analys
 
 There is a need for an intelligent, automated, and real-time surveillance system that can monitor environments continuously, detect suspicious activities using AI techniques, and instantly alert authorities. The system should also function effectively during low-light or nighttime conditions.</br>
 
-VigilantEye aims to address these challenges by integrating artificial intelligence with hardware-based surveillance to provide real-time detection, automated alerts, and enhanced security monitoring.</br>
+PiLENS aims to address these challenges by integrating artificial intelligence with hardware-based surveillance to provide real-time detection, automated alerts, and enhanced security monitoring.</br>
 
 ### Current Situation
 
@@ -173,7 +173,7 @@ An automated AI-powered surveillance system is required.
 
 ## System Architecture
 
-The VigilantEye system is designed as an integrated IoT-based surveillance platform that combines hardware components, software modules, and AI-driven processing to enable real-time suspicious activity detection. The architecture is modular, allowing for scalability and future expansions such as audio integration or long-range wireless connectivity. It leverages the edge computing capabilities of the Raspberry Pi to perform on-device analysis, reducing latency and enhancing privacy by minimizing data transmission to external servers. The system is divided into three main layers: Input Layer, Processing Layer, and Output Layer.
+The PiLENS system is designed as an integrated IoT-based surveillance platform that combines hardware components, software modules, and AI-driven processing to enable real-time suspicious activity detection. The architecture is modular, allowing for scalability and future expansions such as audio integration or long-range wireless connectivity. It leverages the edge computing capabilities of the Raspberry Pi to perform on-device analysis, reducing latency and enhancing privacy by minimizing data transmission to external servers. The system is divided into three main layers: Input Layer, Processing Layer, and Output Layer.
 
 ### Input Layer
 
