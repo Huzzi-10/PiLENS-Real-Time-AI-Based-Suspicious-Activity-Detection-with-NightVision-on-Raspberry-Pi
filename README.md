@@ -16,6 +16,27 @@ Key components include:
 - **Storage:** Selective saving of suspicious clips to reduce unnecessary storage usage.
 - **Performance target:** 5 FPS processing on Raspberry Pi hardware.
 
+## Technical Highlights
+
+- Edge AI pipeline running on Raspberry Pi
+- YOLO-based real-time person detection
+- CNN-LSTM suspicious activity classification
+- Face recognition mode for authorized/intruder detection
+- PyQt6 desktop dashboard for monitoring and logs
+- Flask MJPEG stream for remote viewing
+- Tailscale support for secure private access
+- GPIO-based LED and buzzer alerts
+- Environment-based configuration for credentials and model paths
+
+## Demo
+
+Add a short demo video or GIF here before applying for internships. A strong demo should show:
+
+- GUI launch and live camera feed
+- Detection event with bounding box or alert state
+- Email or local alert behavior
+- Saved suspicious clip or screenshot
+
 ## Proposed Solution
 
 PiLENS combines hardware and software modules into a portable surveillance platform.
@@ -278,23 +299,37 @@ Core libraries:
    pip install -r requirements.txt
    ```
 
-5. Check model paths:
+5. Configure environment variables:
+
+   ```bash
+   copy .env.example .env
+   ```
+
+   On Raspberry Pi/Linux:
+
+   ```bash
+   cp .env.example .env
+   ```
+
+   Update `.env` with your Gmail app password, receiver email, and optional model paths.
+
+6. Check model paths:
 
    - YOLO model is stored at `Models/yolo11n.pt`.
    - Action model is stored at `Models/action_model.pth`.
-   - Update `MODEL_PATH` and `CLASSIFIER_MODEL_PATH` in the program files if needed.
+   - Update `YOLO_MODEL_PATH` and `CLASSIFIER_MODEL_PATH` in `.env` if needed.
 
-6. Configure email settings:
+7. Configure email settings:
 
-   Update `SENDER_EMAIL`, `SENDER_PASSWORD`, and `RECEIVER_EMAIL` in the selected program file.
+   Update `SENDER_EMAIL`, `SENDER_PASSWORD`, and `RECEIVER_EMAIL` in `.env`. Use a Gmail app password instead of your normal Gmail password.
 
-7. Start Tailscale on Raspberry Pi if remote access is required:
+8. Start Tailscale on Raspberry Pi if remote access is required:
 
    ```bash
    sudo tailscale up
    ```
 
-8. Run one of the detection modes:
+9. Run one of the detection modes:
 
    ```bash
    python Programs/Program_1.py
@@ -320,6 +355,27 @@ Core libraries:
 | GUI Screenshot | GUI Screenshot | GUI Screenshot |
 | --- | --- | --- |
 | ![Screenshot 1](assets/SS-1.png) | ![Screenshot 2](assets/SS-2.png) | ![Screenshot 3](assets/SS-3.png) |
+
+## Documentation
+
+- [Hardware Setup](docs/hardware_setup.md)
+- [Raspberry Pi Setup](docs/raspberry_pi_setup.md)
+- [Model Training](docs/model_training.md)
+- [Troubleshooting](docs/troubleshooting.md)
+
+## Known Limitations
+
+- Raspberry Pi camera and GPIO features require Raspberry Pi hardware.
+- Email alerts require a valid Gmail app password.
+- Face recognition requires authorized face images in the `Authorized` folder.
+- Real-time performance depends on lighting, camera resolution, model size, and Raspberry Pi load.
+- Program 3 requires the trained `Models/action_model.pth` classifier.
+
+## CV Highlights
+
+- Built an AI-powered Raspberry Pi surveillance system using YOLO, CNN-LSTM, OpenCV, PyQt6, and Flask.
+- Implemented real-time person detection, suspicious activity classification, face recognition, email alerts, GPIO alerts, and selective video storage.
+- Designed a night vision monitoring workflow with secure remote access through Tailscale and MJPEG streaming.
 
 ## Future Work
 

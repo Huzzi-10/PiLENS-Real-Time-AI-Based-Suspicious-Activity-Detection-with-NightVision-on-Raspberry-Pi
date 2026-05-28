@@ -37,14 +37,15 @@ from email.mime.multipart import MIMEMultipart
 from email.mime.base import MIMEBase
 from email import encoders
 from email.mime.text import MIMEText
+from config import get_setting, project_path
 
 # ---------------- CONFIG (edit as needed) ----------------
-SENDER_EMAIL = "huzaifaasad17805@gmail.com"
-SENDER_PASSWORD = "xuzb lfuo puqi xona"
-RECEIVER_EMAIL = "huzaifaasadlm10@gmail.com"
+SENDER_EMAIL = get_setting("SENDER_EMAIL")
+SENDER_PASSWORD = get_setting("SENDER_PASSWORD")
+RECEIVER_EMAIL = get_setting("RECEIVER_EMAIL")
 
 INTRUDER_FOLDER = "Intruders"
-MODEL_PATH = "yolo11n.pt"
+MODEL_PATH = get_setting("YOLO_MODEL_PATH", project_path("Models", "yolo11n.pt"))
 FRAME_SIZE = (1280, 720)
 FPS = 20
 
@@ -102,6 +103,10 @@ QLabel#statusAlert { background: #f8d7da; color: #721c24; padding: 6px 12px; bor
 def send_email_async(subject, body, attachment_path):
     def _send():
         try:
+            if not all([SENDER_EMAIL, SENDER_PASSWORD, RECEIVER_EMAIL]):
+                print("[Email] Skipped: set SENDER_EMAIL, SENDER_PASSWORD, and RECEIVER_EMAIL in .env")
+                return
+
             msg = MIMEMultipart()
             msg['From'] = SENDER_EMAIL
             msg['To'] = RECEIVER_EMAIL

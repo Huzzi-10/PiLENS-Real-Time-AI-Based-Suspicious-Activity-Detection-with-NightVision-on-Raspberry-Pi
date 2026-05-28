@@ -41,11 +41,12 @@ from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 from email.mime.base import MIMEBase
 from email import encoders
+from config import get_setting, project_path
 
 # ------------------------- YOUR ORIGINAL CONFIG -------------------------
-USE_VIDEO = False
-VIDEO_PATH = "/home/huzaifa/Desktop/Main Project VigilantEye/Camera.mp4"
-CLASSIFIER_MODEL_PATH = "/home/huzaifa/Desktop/Main Project VigilantEye/action_model.pth"
+USE_VIDEO = get_setting("USE_VIDEO", "false").lower() in {"1", "true", "yes"}
+VIDEO_PATH = get_setting("VIDEO_PATH", project_path("Camera.mp4"))
+CLASSIFIER_MODEL_PATH = get_setting("CLASSIFIER_MODEL_PATH", project_path("Models", "action_model.pth"))
 SEQUENCE_LEN = 16
 IMG_SIZE = 112
 CLASSES = ["Normal", "Suspicious"]
@@ -56,17 +57,17 @@ DEVICE = "cuda" if torch.cuda.is_available() else "cpu"
 LED_PIN = 17
 BUZZER_PIN = 18
 
-MODEL_PATH = "yolo11n.pt"  # YOLO model file (your original)
+MODEL_PATH = get_setting("YOLO_MODEL_PATH", project_path("Models", "yolo11n.pt"))
 FRAME_SIZE = (1280, 720)
 FPS = 20
 
 MIN_RECORD_SECONDS = 5.0
 CONF_THRESHOLD = 0.60
 
-# Email credentials (as you provided — keep secure)
-SENDER_EMAIL = "huzaifaasad17805@gmail.com"
-SENDER_PASSWORD = "xuzb lfuo puqi xona"
-RECEIVER_EMAIL = "huzaifaasadlm10@gmail.com"
+# Email credentials are loaded from .env.
+SENDER_EMAIL = get_setting("SENDER_EMAIL")
+SENDER_PASSWORD = get_setting("SENDER_PASSWORD")
+RECEIVER_EMAIL = get_setting("RECEIVER_EMAIL")
 
 # Folders
 INTRUDER_FOLDER = "Intruders"
@@ -85,6 +86,10 @@ if _HAS_GPIO:
 # ------------------------- EMAIL FUNCTION (your logic preserved) -------------------------
 def send_email_alert(video_path, label):
     try:
+        if not all([SENDER_EMAIL, SENDER_PASSWORD, RECEIVER_EMAIL]):
+            print("[Email] Skipped: set SENDER_EMAIL, SENDER_PASSWORD, and RECEIVER_EMAIL in .env")
+            return
+
         sender_email = SENDER_EMAIL
         sender_password = SENDER_PASSWORD
         receiver_email = RECEIVER_EMAIL
