@@ -88,7 +88,7 @@ An ideal system should:
 
 PiLENS continuously analyzes live camera feeds, detects suspicious activity, and notifies the concerned authority when a potential threat is identified.
 
-![Motivational Scenario](Assets/Motivational_Scenario.jpg)
+![Motivational Scenario](assets/Motivational_Scenario.jpg)
 
 ## Problem Statement
 
@@ -147,7 +147,15 @@ When suspicious activity is detected, the system can generate alerts through:
 - GUI logs and intruder file browser
 - Flask-based remote MJPEG stream
 
-![Workflow Diagram](Assets/Work_Flow.png)
+![Workflow Diagram](assets/Work_Flow.png)
+
+### Circuit Diagram
+
+![Circuit Diagram](assets/Circuit_Digram.jpg)
+
+### Phase-wise Flow
+
+![Phase-wise Flow](assets/Phases_Wise.jpg)
 
 ## Detection Modes
 
@@ -155,7 +163,7 @@ When suspicious activity is detected, the system can generate alerts through:
 
 Detects a person and triggers an alert immediately.
 
-![Program 1 Flowchart](Assets/Program_1_Flowchart.jpg)
+![Program 1 Flowchart](assets/Program_1_Flowchart.jpg)
 
 Run:
 
@@ -167,7 +175,7 @@ python Programs/Program_1.py
 
 Uses face recognition to check whether a detected person is authorized.
 
-![Program 2 Flowchart](Assets/Program_2_Flowchart.jpg)
+![Program 2 Flowchart](assets/Program_2_Flowchart.jpg)
 
 Run:
 
@@ -179,7 +187,7 @@ python Programs/Program_2.py
 
 Uses YOLO, CNN, and LSTM for suspicious activity analysis.
 
-![Program 3 Flowchart](Assets/Program_3_Flowchart.jpg)
+![Program 3 Flowchart](assets/Program_3_Flowchart.jpg)
 
 Run:
 
@@ -226,7 +234,16 @@ Core libraries:
 - `torchvision`
 - `RPi.GPIO`
 
-![Feature Image](Assets/Featural_Image.png)
+![Feature Image](assets/Featural_Image.png)
+
+## Hardware Gallery
+
+| Prototype | Prototype | Prototype |
+| --- | --- | --- |
+| ![Hardware 1](assets/Hardware_1.jpeg) | ![Hardware 2](assets/Hardware_2.jpeg) | ![Hardware 3](assets/Hardware_3.jpeg) |
+| ![Hardware 4](assets/Hardware_4.jpeg) | ![Hardware 5](assets/Hardware_5.jpg) | ![Hardware 6](assets/Hardware_6.jpeg) |
+| ![Hardware 7](assets/Hardware_7.jpeg) | ![Hardware 8](assets/Hardware_8.jpeg) | ![Hardware 9](assets/Hardware_9.jpeg) |
+| ![Hardware 10](assets/Hardware_10.jpeg) |  |  |
 
 ## Installation and Setup
 
@@ -297,6 +314,12 @@ Core libraries:
   ```
 
 - Click **Stop Monitoring** to end the session.
+
+## Application Screenshots
+
+| GUI Screenshot | GUI Screenshot | GUI Screenshot |
+| --- | --- | --- |
+| ![Screenshot 1](assets/SS-1.png) | ![Screenshot 2](assets/SS-2.png) | ![Screenshot 3](assets/SS-3.png) |
 
 ## Future Work
 
