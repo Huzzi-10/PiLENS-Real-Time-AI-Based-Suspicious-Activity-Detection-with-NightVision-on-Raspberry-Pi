@@ -1,0 +1,10 @@
+ultralytics
+picamera2
+opencv-python
+numpy
+PyQt6
+Flask
+face-recognition
+torch
+torchvision
+RPi.GPIO
