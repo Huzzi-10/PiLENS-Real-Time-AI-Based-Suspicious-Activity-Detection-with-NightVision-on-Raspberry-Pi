@@ -135,7 +135,7 @@ The system integrates:
 Unlike traditional systems, PiLENS does not rely solely on human observation. Instead, it continuously analyzes live feeds, detects anomalies, and instantly notifies the concerned authority when suspicious activity is identified.
 
 
-![Motivational Scenario](Figures/Motivational_Scenario.jpg)
+![Motivational Scenario](Assets/Motivational_Scenario.jpg)
 
 </br>
 
@@ -204,7 +204,7 @@ This layer manages alerts and user interaction. Upon detection, the system gener
 
 The architecture emphasizes low-cost, portability, and security, making it suitable for military or civil applications. It uses Flask for streaming and Tailscale for encrypted remote access, ensuring hack-proof operation. Future enhancements include audio anomaly detection and NRF-based long-distance wireless connectivity to extend the system's range.
 
-![Work_Flow_Digram](Figures/Work_Flow.png)
+![Work_Flow_Digram](Assets/Work_Flow.png)
 
 
 
@@ -216,17 +216,19 @@ The architecture emphasizes low-cost, portability, and security, making it suita
   - Mode 3: Advanced suspicious activity analysis via YOLO + CNN + LSTM.
 </br>
 
-![Program_1_Flowchart](Figures/Program_1_Flowchart.jpg)
+![Program_1_Flowchart](Assets/Program_1_Flowchart.jpg)
 
 ### This is the Mode 1 
 
 <br>
 
-![Program_2_Flowchart](Figures/Program_2_Flowchart.jpg)
+![Program_2_Flowchart](Assets/Program_2_Flowchart.jpg)
 
 ### This is the Mode 2
 
 <br>
+
+![Program_3_Flowchart](Assets/Program_3_Flowchart.jpg)
 
 
 - **Nightvision Capability**: 12MP NOIR camera with IR LEDs for low-light environments.
@@ -259,7 +261,7 @@ The architecture emphasizes low-cost, portability, and security, making it suita
 
 </br>
 
-![Featural_Image](Figures/Featural_Image.png)
+![Featural_Image](Assets/Featural_Image.png)
 
 </br>
 
