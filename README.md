@@ -28,15 +28,6 @@ Key components include:
 - GPIO-based LED and buzzer alerts
 - Environment-based configuration for credentials and model paths
 
-## Demo
-
-Add a short demo video or GIF here before applying for internships. A strong demo should show:
-
-- GUI launch and live camera feed
-- Detection event with bounding box or alert state
-- Email or local alert behavior
-- Saved suspicious clip or screenshot
-
 ## Proposed Solution
 
 PiLENS combines hardware and software modules into a portable surveillance platform.
