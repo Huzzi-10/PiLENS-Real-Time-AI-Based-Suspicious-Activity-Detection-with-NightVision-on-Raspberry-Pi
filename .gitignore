@@ -212,3 +212,10 @@ cython_debug/
 marimo/_static/
 marimo/_lsp/
 __marimo__/
+
+# PiLENS v2 large / local outputs (commit splits/, runs/*/summary.json, bench_results/, logs/*/summary.json)
+exports/
+feats_x3ds/
+replay/
+runs/**/*.pt
+*.onnx
