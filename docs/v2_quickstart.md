@@ -23,21 +23,33 @@ pilens_v2/
 
 Tests: `python -m pytest tests -q` (synthetic data par poora flow: training -> ONNX -> replay -> live).
 
+## Sabse aasaan raasta (3 kaam)
+
+| Kahan | Kya karna hai | File |
+|---|---|---|
+| Kaggle | Notebook upload, dataset add, GPU T4 x2, **Run All** (Steps 2, 3, 4). End mein `pilens_outputs.zip` | [`notebooks/PiLENS_v2_Kaggle.ipynb`](../notebooks/PiLENS_v2_Kaggle.ipynb) |
+| Pi | `exports/` copy, phir `bash scripts/pi_setup.sh` aur `bash scripts/pi_benchmark_all.sh` (Steps 5, 6) | [`scripts/`](../scripts) |
+| Laptop | Zip ke `splits/`, `runs/*/summary.json` aur Pi ke `bench_results/`, `logs/` repo mein daal kar `python -m pilens_v2.eval.make_tables` -> `docs/v2_results.md` | [`pilens_v2/eval/make_tables.py`](../pilens_v2/eval/make_tables.py) |
+
+Phir paper: [`docs/paper/pilens_v2.tex`](paper/pilens_v2.tex) mein har laal `[TBD]` ko `docs/v2_results.md` se bharo.
+Sir ka message aur consent form: [`v2_supervisor_and_ethics.md`](v2_supervisor_and_ethics.md).
+Pi par hamesha chalane ke liye (boot par start): [`scripts/pilens.service`](../scripts/pilens.service).
+
 ---
 
 ## Step 0: repo setup
 
+v2 ab `main` par merge ho chuka hai, isliye alag `v2-pipeline` branch ki zaroorat nahi. Sirf v1 ka tag
+lagana hai, **merge se pehle wale commit `386de78`** par (warna tag v2 ko point karega):
+
 ```bash
-# v1 ko freeze karo (main ka current commit = v1)
-git tag -a v1-baseline -m "v1: ResNet18+LSTM, 2 classes (baseline)" main
+git fetch origin
+git tag -a v1-baseline -m "v1: ResNet18+LSTM, 2 classes (baseline)" 386de78
 git push origin v1-baseline
-# v2 branch
-git checkout -b v2-pipeline
-git push -u origin v2-pipeline
 ```
 
-Split files Step 2 ke pehle cell se bante hain (`splits/`), unhe commit karo:
-`git add splits && git commit -m "Add official video-level splits" && git push`.
+Bina terminal ke: GitHub repo -> *Releases* -> *Draft a new release* -> *Choose a tag* mein `v1-baseline`
+likho -> *Target* mein *Recent commits* se `386de78 Add files via upload` chuno -> *Publish release*.
 
 ## Step 2: features (Kaggle, 2x T4)
 
