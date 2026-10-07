@@ -1,0 +1,12 @@
+# PiLENS v2: training / feature extraction / export (Kaggle, 2x T4)
+torch
+torchvision
+pytorchvideo
+opencv-python-headless
+numpy
+onnx
+onnxruntime
+pandas
+openpyxl
+scikit-learn
+pytest

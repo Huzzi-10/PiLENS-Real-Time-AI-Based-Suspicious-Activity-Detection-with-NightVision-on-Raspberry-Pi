@@ -354,6 +354,16 @@ Core libraries:
 - [Model Training](docs/model_training.md)
 - [Troubleshooting](docs/troubleshooting.md)
 
+### PiLENS v2 (in progress)
+
+v2 replaces the ResNet18-LSTM classifier (v1, kept as the paper baseline) with an X3D-S two-stage
+cascade (binary MIL anomaly score on every clip, 14-class UCF-Crime head only on alerts),
+exported to ONNX Runtime for the Raspberry Pi 5. Code lives in `pilens_v2/`.
+
+- [v2 Engineering Notes](docs/v2_engineering_notes.md): decisions, dataset, results so far, roadmap
+- [v2 Quickstart](docs/v2_quickstart.md): commands for every roadmap step (Kaggle and Pi)
+- [v2 Paper Tables](docs/v2_paper_tables.md): result tables and the file each number comes from
+
 ## Known Limitations
 
 - Raspberry Pi camera and GPIO features require Raspberry Pi hardware.

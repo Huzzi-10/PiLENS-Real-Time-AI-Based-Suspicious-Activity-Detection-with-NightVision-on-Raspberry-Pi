@@ -1,0 +1,5 @@
+# PiLENS v2: Raspberry Pi 5 runtime (no torch needed)
+# picamera2, opencv, gpiozero and flask come from apt (see docs/v2_quickstart.md)
+onnxruntime
+numpy
+psutil
