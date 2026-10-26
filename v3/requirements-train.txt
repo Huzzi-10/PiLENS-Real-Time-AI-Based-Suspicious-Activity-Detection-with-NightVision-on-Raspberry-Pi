@@ -1,0 +1,6 @@
+# The training scripts are written for a Kaggle GPU notebook (T4, Internet ON) and install what they
+# need themselves (fvcore, iopath, einops, onnx, onnxruntime, transformers for CLIP).
+# Kaggle images already include torch, torchvision, numpy and opencv.
+# evaluation/*.py need only numpy (matplotlib is optional, for the ROC/PR figure).
+numpy
+matplotlib

@@ -1,0 +1,83 @@
+{
+ "model": "CLIP ViT-B/16 (openai/clip-vit-base-patch16) image encoder",
+ "input_size": 224,
+ "rgb_mean": [
+  0.48145467042922974,
+  0.45782750844955444,
+  0.40821072459220886
+ ],
+ "rgb_std": [
+  0.2686295509338379,
+  0.2613025903701782,
+  0.27577710151672363
+ ],
+ "resize": "short side 224, center crop 224, RGB",
+ "frames_of_13_clip": [
+  0,
+  4,
+  8,
+  12
+ ],
+ "embedding": "image_embeds (512, not L2-normalised); avg of the 4 frames per clip",
+ "topk": 3,
+ "classes": [
+  "Abuse",
+  "Arrest",
+  "Arson",
+  "Assault",
+  "Burglary",
+  "Explosion",
+  "Fighting",
+  "RoadAccidents",
+  "Robbery",
+  "Shooting",
+  "Shoplifting",
+  "Stealing",
+  "Vandalism"
+ ],
+ "groups": [
+  "Violence",
+  "Theft",
+  "Fire/damage",
+  "Road accident"
+ ],
+ "seed0_thresholds": {
+  "fpr5_r0": {
+   "thrA": 0.9997243303358537,
+   "thrC": 0.0001639845630135877
+  },
+  "fpr5_r1": {
+   "thrA": 0.9997243303358537,
+   "thrC": 0.000575426415155724
+  },
+  "fpr5_r2": {
+   "thrA": 0.9997243303358537,
+   "thrC": 0.000575426415155724
+  },
+  "fpr10_r0": {
+   "thrA": 0.9978126624210844,
+   "thrC": 0.0033732282454512355
+  },
+  "fpr10_r1": {
+   "thrA": 0.9978126624210844,
+   "thrC": 0.010445657860846846
+  },
+  "fpr10_r2": {
+   "thrA": 0.9978126624210844,
+   "thrC": 0.010445657860846846
+  },
+  "youden_r0": {
+   "thrA": 0.9784502029328379,
+   "thrC": 0.0033732282454512355
+  },
+  "youden_r1": {
+   "thrA": 0.9784502029328379,
+   "thrC": 0.010445657860846846
+  },
+  "youden_r2": {
+   "thrA": 0.9784502029328379,
+   "thrC": 0.010445657860846846
+  }
+ },
+ "note": "thresholds are for the heads retrained in this script (A0 mlp seed0 + CLIP mlp seed0), raw sigmoid scores, no temperature"
+}

@@ -31,7 +31,7 @@ Tests: `python -m pytest tests -q` (synthetic data par poora flow: training -> O
 | Pi | `exports/` copy, phir `bash scripts/pi_setup.sh` aur `bash scripts/pi_benchmark_all.sh` (Steps 5, 6) | [`scripts/`](../scripts) |
 | Laptop | Zip ke `splits/`, `runs/*/summary.json` aur Pi ke `bench_results/`, `logs/` repo mein daal kar `python -m pilens_v2.eval.make_tables` -> `docs/v2_results.md` | [`pilens_v2/eval/make_tables.py`](../pilens_v2/eval/make_tables.py) |
 
-Phir paper: [`docs/paper/pilens_v2.tex`](paper/pilens_v2.tex) mein har laal `[TBD]` ko `docs/v2_results.md` se bharo.
+The v2 paper draft was retired when v3 replaced X3D-S; it is still in the `v2.0.0` tag.
 Sir ka message aur consent form: [`v2_supervisor_and_ethics.md`](v2_supervisor_and_ethics.md).
 Pi par hamesha chalane ke liye (boot par start): [`scripts/pilens.service`](../scripts/pilens.service).
 

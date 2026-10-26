@@ -306,6 +306,6 @@ Ek time par ek hi step. Har step ke saath "done jab" likha hai. Har step ki comm
 Abhi nahi karna: VideoMamba, cloud models, face recognition, mobile app, GUI polish.
 
 **Status (Oct 7, 2026):** Steps 2-6 aur 9 ka code, Kaggle notebook, Pi scripts, results-table generator,
-paper draft (`docs/paper/`), sir ka message aur consent form (`docs/v2_supervisor_and_ethics.md`) tayyar.
+paper draft (now only in the `v2.0.0` tag), sir ka message aur consent form (`docs/v2_supervisor_and_ethics.md`) tayyar.
 Baaki: `v1-baseline` tag push, Kaggle par Run All, Pi par measurements, sir se jawab, apni recordings,
 MoViNet (Step 8) aur Track B (Step 10).

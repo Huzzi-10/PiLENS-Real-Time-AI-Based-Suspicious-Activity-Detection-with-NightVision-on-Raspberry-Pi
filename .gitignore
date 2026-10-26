@@ -219,3 +219,16 @@ feats_x3ds/
 replay/
 runs/**/*.pt
 *.onnx
+
+# PiLENS v3 (repo layout by version: v1/, v2/, v3/)
+!v3/export_movinet/*.onnx
+v3/export_clip_b16/
+v3/export_movinet_a0_gray/
+v3/export_movinet_a1/
+v3/samples/
+v3/out/
+v3/out_cascade/
+v3/demo_out/
+v3/paper_out/
+v3/venv/
+*.mp4
