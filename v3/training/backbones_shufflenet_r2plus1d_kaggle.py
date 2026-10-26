@@ -1,4 +1,4 @@
-"""PiLENS other-backbone experiments (ShuffleNet-3D, R(2+1)D-18; run by Warda). Official split, test used once. Runs in ONE Kaggle cell.
+"""PiLENS other-backbone experiments (ShuffleNet-3D, R(2+1)D-18). Official split, test used once. Runs in ONE Kaggle cell.
 
 Each experiment has 3 stages (as in the main pipeline):
   STAGE 1  binary anomaly detection (video AUC, MIL top-k)

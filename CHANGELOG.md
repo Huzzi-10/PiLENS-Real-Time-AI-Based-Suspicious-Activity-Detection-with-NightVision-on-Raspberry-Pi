@@ -4,6 +4,14 @@ All notable changes to PiLENS, one entry per version. Versions follow `MAJOR.MIN
 
 ## [Unreleased]
 
+### Added
+- README figures in light and dark versions: banner, pipeline diagram, CLIP-check chart, accuracy vs speed, Pi latency, 16-model comparison, ROC curve and a hardware photo strip. They are drawn from `v3/results/` by `docs/figures/make_figures.py` and `docs/figures/make_diagrams.py`.
+- `CITATION.cff`, `CONTRIBUTING.md`, issue and pull request templates.
+- CI: syntax check of every script and a check that the result tables rebuild exactly from the saved score packs.
+
+### Changed
+- Main README rewritten: overview, how it works, results with figures, quick start, hardware, versions, roadmap.
+
 ## [3.0.0] - 2026-10-26
 
 Current version, in [`v3/`](v3/).

@@ -1,0 +1,32 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  checks:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install
+        run: pip install numpy
+
+      - name: Syntax check (all versions)
+        run: python -m py_compile v1/Programs/*.py $(find v2/pilens_v2 -name '*.py') v3/*.py v3/training/*.py v3/evaluation/*.py
+
+      - name: Results reproduce from the saved score packs
+        run: |
+          cd v3
+          python evaluation/paper_eval.py --x3 results/x3ds/binary_out --mv results/movinet_a0_v2/binary_out_movinet_a0_v2 \
+            --x3c results/x3ds/cls14_out --mvc results/movinet_a0_v2/cls14_out_movinet_a0_v2 \
+            --cnn results/mnv3l/binary_out_mnv3l --out /tmp/paper_out
+          diff <(grep -v '^Generated' /tmp/paper_out/paper_tables.md) <(grep -v '^Generated' results/paper_final/paper_tables.md)
+          python evaluation/reduced_classes_eval.py
+          git diff --exit-code results/paper_final/reduced_classes.md
