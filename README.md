@@ -83,7 +83,7 @@ CHANGELOG.md   what changed in each version
 
 ## Team
 
-Developed by Huzaifa Asad at The Islamia University of Bahawalpur, supervised by Dr. Mobeen Shahroz. The backbone comparison experiments were run by Warda, Fadia and Aleeza. PiLENS is the first product of [PiVisen AI](https://pivisen.com).
+Developed by Huzaifa Asad at The Islamia University of Bahawalpur, supervised by Dr. Mobeen Shahroz. The backbone comparison experiments were run by Manaheel Hashim. PiLENS is the first product of [PiVisen AI](https://pivisen.com).
 
 A research paper on PiLENS v3 is in preparation. Citation details will be added here once it is published.
 
