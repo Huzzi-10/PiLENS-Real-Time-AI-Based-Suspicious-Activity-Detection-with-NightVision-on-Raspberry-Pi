@@ -1,0 +1,7 @@
+# PiLENS v3 runtime on the Raspberry Pi 5 (64-bit Raspberry Pi OS / Debian 13, Python 3.11+)
+# Tested with onnxruntime 1.30 on the Pi.
+onnxruntime>=1.20
+numpy
+opencv-python          # use opencv-python-headless if no window is needed (then view with --web 8000)
+# Optional, for --gpio (LED + buzzer). Raspberry Pi OS ships it; pinctrl is used as a fallback.
+# gpiozero
