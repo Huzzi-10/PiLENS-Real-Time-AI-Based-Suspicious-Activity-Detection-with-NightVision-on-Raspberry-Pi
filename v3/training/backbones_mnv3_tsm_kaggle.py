@@ -1,4 +1,4 @@
-"""PiLENS other-backbone experiments (MobileNetV3 + TSM; run by Aleeza). Official split, test used once. Runs in ONE Kaggle cell.
+"""PiLENS other-backbone experiments (MobileNetV3 + TSM). Official split, test used once. Runs in ONE Kaggle cell.
 
 Each experiment has 3 stages (as in the main pipeline):
   STAGE 1  binary anomaly detection (video AUC, MIL top-k)

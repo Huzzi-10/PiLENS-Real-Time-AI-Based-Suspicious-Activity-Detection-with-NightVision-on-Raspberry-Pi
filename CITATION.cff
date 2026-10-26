@@ -1,0 +1,23 @@
+cff-version: 1.2.0
+message: "If you use PiLENS, please cite it as below. A paper is in preparation; this entry will be updated when it is published."
+title: "PiLENS: Real-Time Crime and Violence Detection on a Raspberry Pi 5"
+type: software
+version: 3.0.0
+date-released: 2026-10-26
+license: Apache-2.0
+repository-code: "https://github.com/Huzzi-10/PiLENS-Real-Time-AI-Based-Suspicious-Activity-Detection-with-NightVision-on-Raspberry-Pi"
+authors:
+  - family-names: Asad
+    given-names: Huzaifa
+    affiliation: "The Islamia University of Bahawalpur"
+  - family-names: Shahroz
+    given-names: Mobeen
+    affiliation: "The Islamia University of Bahawalpur"
+keywords:
+  - video anomaly detection
+  - edge AI
+  - Raspberry Pi
+  - surveillance
+  - MoViNet
+  - CLIP
+  - ONNX Runtime

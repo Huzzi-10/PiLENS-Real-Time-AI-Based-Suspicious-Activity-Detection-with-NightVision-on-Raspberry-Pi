@@ -1,4 +1,4 @@
-"""PiLENS other-backbone experiments (SlowFast-light, S3D, MC3-18; run by Fadia). Official split, test used once. Runs in ONE Kaggle cell.
+"""PiLENS other-backbone experiments (SlowFast-light, S3D, MC3-18). Official split, test used once. Runs in ONE Kaggle cell.
 
 Each experiment has 3 stages (as in the main pipeline):
   STAGE 1  binary anomaly detection (video AUC, MIL top-k)
