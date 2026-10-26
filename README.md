@@ -363,6 +363,9 @@ exported to ONNX Runtime for the Raspberry Pi 5. Code lives in `pilens_v2/`.
 - [v2 Engineering Notes](docs/v2_engineering_notes.md): decisions, dataset, results so far, roadmap
 - [v2 Quickstart](docs/v2_quickstart.md): commands for every roadmap step (Kaggle and Pi)
 - [v2 Paper Tables](docs/v2_paper_tables.md): result tables and the file each number comes from
+- [Kaggle notebook](notebooks/PiLENS_v2_Kaggle.ipynb): splits, features, training and ONNX export in one Run All
+- [Pi scripts](scripts/): setup, all benchmarks, systemd service
+- [Paper draft](docs/paper/pilens_v2.tex) and [supervisor / consent documents](docs/v2_supervisor_and_ethics.md)
 
 ## Known Limitations
 

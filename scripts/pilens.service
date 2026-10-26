@@ -1,0 +1,18 @@
+# PiLENS v2 as a service (starts on boot, restarts on crash).
+#   sudo cp scripts/pilens.service /etc/systemd/system/ && sudo systemctl enable --now pilens
+#   journalctl -u pilens -f          # live log
+# Edit User / WorkingDirectory if the repo is not at /home/pi/pilens.
+[Unit]
+Description=PiLENS v2 suspicious activity detection
+After=network-online.target tailscaled.service
+Wants=network-online.target
+
+[Service]
+User=pi
+WorkingDirectory=/home/pi/pilens
+ExecStart=/home/pi/pilens-venv/bin/python -m pilens_v2.runtime.run --exports exports --log-dir logs/service
+Restart=on-failure
+RestartSec=10
+
+[Install]
+WantedBy=multi-user.target

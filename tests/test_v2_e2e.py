@@ -114,11 +114,11 @@ def test_pipeline_end_to_end(tmp_path):
     ev = tmp_path / "ev.csv"
     ev.write_text("video_id,start_frame,end_frame\nclip,90,239\n")
     out = cli("pilens_v2.eval.alert_eval", "--replay", str(tmp_path / "replay"), "--ann", str(ev),
-              "--threshold", "0.0")
+              "--threshold", "0.0", "--out", str(tmp_path / "replay" / "alert_eval.json"))
     assert "2 of 3" in out
 
     # live threaded pipeline on the file (threshold 0 -> it must alert)
-    logs = tmp_path / "logs"
+    logs = tmp_path / "logs" / "live"
     out = cli("pilens_v2.runtime.run", "--exports", str(exports), "--source", str(video),
               "--threshold", "0", "--no-email", "--no-stream", "--cooldown", "100",
               "--clip-dir", str(tmp_path / "Intruders"), "--log-dir", str(logs), "--duration", "20")
@@ -126,3 +126,13 @@ def test_pipeline_end_to_end(tmp_path):
     assert summary["hops_scored"] > 0 and summary["alerts"] >= 1, out
     assert summary["capture_fps"] > 20
     assert list((tmp_path / "Intruders").glob("*.mp4"))
+
+    # paper tables from all of the above
+    md_path = tmp_path / "results.md"
+    cli("pilens_v2.eval.make_tables", "--runs", str(runs), "--bench", str(tmp_path / "bench"),
+        "--logs", str(tmp_path / "logs"), "--alert", str(tmp_path / "replay" / "alert_eval.json"),
+        "--out", str(md_path))
+    md = md_path.read_text()
+    assert "| cls | linear |" in md and "| mil | mlp |" in md
+    assert "Confusion matrix" in md and "| live | gate |" in md and "| 2 of 3 | on |" in md
+    assert "_No results yet._" not in md

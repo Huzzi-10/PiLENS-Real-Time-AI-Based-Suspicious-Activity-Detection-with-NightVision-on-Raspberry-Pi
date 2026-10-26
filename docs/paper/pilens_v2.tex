@@ -1,0 +1,189 @@
+% PiLENS v2 manuscript draft (roadmap Step 11).
+% Written with IEEEtran so it compiles anywhere (Overleaf: New Project -> Upload).
+% For submission, paste the sections into the official IEEE Access template.
+% Every \TBD{} is a number that must come from docs/v2_results.md (measured only).
+\documentclass[journal]{IEEEtran}
+\usepackage{amsmath,amssymb,graphicx,booktabs,xcolor,cite,url}
+\newcommand{\TBD}[1]{\textcolor{red}{[TBD: #1]}}
+
+\begin{document}
+
+\title{PiLENS: A Two-Stage Video Anomaly Detection Cascade for Real-Time\\
+Night-Vision Surveillance on the Raspberry Pi 5}
+
+\author{Huzaifa~Asad, \TBD{co-authors and affiliation, order to be confirmed with supervisor}}
+
+\maketitle
+
+\begin{abstract}
+Automated surveillance on low-cost edge hardware must detect suspicious activity in real time,
+at night, and without a GPU. We present PiLENS, a Raspberry Pi~5 system with a NoIR camera and
+infrared illumination that runs a two-stage cascade on a single shared X3D-S backbone. Stage~1,
+a weakly supervised multiple-instance-learning (MIL) head, scores every 2.4\,s clip as normal
+or suspicious; stage~2, a 14-class UCF-Crime head, runs only when a $k$-of-$n$ temporal vote
+raises an alert and reuses cached clip features, so it adds almost no compute. On the official
+UCF-Crime anomaly split the binary stage reaches a video-level AUC of \TBD{video AUC $\pm$ std}
+and a frame-level AUC of \TBD{frame AUC $\pm$ std}; 14-class recognition on the official four
+folds reaches \TBD{accuracy}\% (macro-F1 \TBD{macro-F1}\%), which we treat as assistive. Exported
+to ONNX Runtime, the cascade processes one clip in \TBD{median clip latency}\,ms (p95
+\TBD{p95}) on the Pi~5 CPU while the camera pipeline sustains \TBD{stream fps}\,frames/s, with
+an event-to-alert time of \TBD{median}\,s and \TBD{FA/h} false alarms per hour. All latency,
+throughput and temperature figures are measured on the device. Code, split files and the
+evaluation protocol are released.
+\end{abstract}
+
+\begin{IEEEkeywords}
+Video anomaly detection, edge computing, Raspberry Pi, night vision, multiple instance
+learning, X3D, ONNX Runtime, surveillance.
+\end{IEEEkeywords}
+
+\section{Introduction}
+CCTV in universities, warehouses and residential areas is still watched by people. Manual
+monitoring of many feeds is tiring and error prone, and footage is usually reviewed only after
+an incident. Night-time scenes make this worse: standard cameras lose detail, and operator
+attention is lowest.
+
+Deep video models can flag abnormal events automatically~\cite{sultani2018}, but most published
+systems assume a desktop GPU or a cloud server, report accuracy only, and are evaluated on
+daylight footage. A deployable system also has to answer engineering questions that accuracy
+tables do not: how long one decision takes on the target CPU, how many frames per second the
+whole pipeline sustains, how quickly an alert follows the start of an event, how many false
+alarms an operator receives per hour, and whether the device throttles under sustained load.
+
+This paper presents PiLENS, an end-to-end night-vision surveillance system on a Raspberry Pi~5.
+Our contributions are:
+\begin{enumerate}
+\item A two-stage cascade on one shared backbone: a binary MIL anomaly head on every clip and a
+14-class head only on alerts, operating on cached features (Section~\ref{sec:method}).
+\item A measured edge benchmark on the Pi~5: per-stage clip latency, stream throughput,
+event-to-alert time, false alarms per hour, CPU/RAM use and temperature with and without active
+cooling (Section~\ref{sec:results}).
+\item Night-vision handling: grayscale-to-three-channel preprocessing shared by training and
+inference, fixed camera exposure, a motion gate robust to IR-attracted insects, and a day/night
+split of the test set to expose a ``darkness = anomaly'' shortcut.
+\item A reproducible protocol on the official UCF-Crime splits with video-level validation,
+duplicate removal and tuning on validation only, released with the code.
+\end{enumerate}
+
+\section{Related Work}
+\subsection{Weakly supervised video anomaly detection}
+Sultani et al.~\cite{sultani2018} introduced UCF-Crime and the MIL ranking formulation, in which
+each untrimmed video is a bag of temporal segments with only a video-level label. Later work
+improved feature magnitude learning~\cite{tian2021rtfm} and temporal context. These methods
+typically use heavy I3D~\cite{carreira2017} features on GPUs. \TBD{add 3--5 recent VAD papers}
+
+\subsection{Efficient video recognition}
+X3D~\cite{feichtenhofer2020x3d} expands a tiny 2D network along temporal, spatial and width axes;
+X3D-S needs about 2\,GFLOPs per clip. MoViNets~\cite{kondratyuk2021movinets} add causal streaming
+buffers for online inference. Both are pretrained on Kinetics~\cite{kay2017kinetics}.
+
+\subsection{Edge surveillance systems}
+\TBD{Raspberry Pi / Jetson surveillance and anomaly detection systems; note which report
+measured on-device latency, throughput and temperature, and which report accuracy only.}
+
+\section{System Design}\label{sec:system}
+\subsection{Hardware}
+A Raspberry Pi~5 (8\,GB) runs everything on its CPU. A NoIR camera module with an infrared
+illuminator provides near-grayscale night frames; exposure and gain are fixed to avoid
+auto-exposure flicker. A GPIO LED and buzzer give local alerts; alert clips are e-mailed; an
+MJPEG stream is reachable only through a Tailscale private network.
+\TBD{Fig.: hardware photo and circuit diagram (assets/).}
+
+\subsection{Real-time pipeline}
+The camera delivers 30 frames/s into a ring buffer (capture thread, never blocked). A motion
+gate runs MOG2 background subtraction~\cite{zivkovic2004} on a blurred $320\times180$ grayscale
+frame; a blob counts only if its area exceeds a minimum fraction of the frame and it persists
+over consecutive checks, which suppresses insects near the IR LEDs and light flicker. Every hop
+($h=0.6$\,s), if the gate is open, the inference thread takes the latest 13-frame clip (stride
+0.2\,s, 2.4\,s span) from the buffer, extracts one 2048-d X3D-S feature, and scores it with the
+binary head. An alert is raised when $k$ of the last $n$ clips exceed the validation threshold
+($k{=}2$, $n{=}3$), followed by a cooldown. Stage~2 then averages the cached features of the last
+3--5 clips and returns the top-3 classes; below a confidence floor the label is ``Unknown
+suspicious''. A separate alert thread drives the GPIO, writes the preceding 5\,s to disk and
+sends the e-mail, so video encoding and networking never stall inference.
+\TBD{Fig.: block diagram of the threads and the cascade.}
+
+\section{Method}\label{sec:method}
+\subsection{Clip features}
+Each untrimmed training video is divided into $T{=}32$ equal temporal segments, and one clip of
+13 frames (stride 6 at 30\,fps) is sampled at the centre of each segment. Frames are resized to
+a short side of 182 pixels and centre-cropped to $160\times160$. The X3D-S backbone (Kinetics-400
+weights, classifier removed) maps each clip to a 2048-d pre-logit vector. The backbone is frozen:
+end-to-end fine-tuning on trimmed clips overfit (train $\approx$92\%, validation 27--34\%).
+
+\subsection{Stage 1: binary MIL head}
+Let $s^a_t$ and $s^n_t$ be the clip scores of an anomalous and a normal video. With $\mathrm{top}_k$
+the mean of the $k{=}3$ highest scores, the loss is
+\begin{equation}
+\mathcal{L} = \max\!\big(0,\,1-\mathrm{top}_k(s^a)+\mathrm{top}_k(s^n)\big)
++ \lambda_1 \sum_{t=1}^{T-1}(s^a_t-s^a_{t+1})^2 + \lambda_2 \sum_{t=1}^{T} s^a_t,
+\end{equation}
+with $\lambda_1=\lambda_2=8\times10^{-5}$. We compare a per-clip MLP ($2048{\to}512{\to}32{\to}1$)
+and a temporal convolution head. Each step samples equal numbers of anomalous and normal bags.
+
+\subsection{Stage 2: 14-class head}
+On the same cached features we train a linear head on the mean clip feature, a top-$k$ MIL head
+and a temporal-convolution MIL head, with class-balanced sampling and label smoothing.
+
+\subsection{Deployment}
+Backbone and heads are exported separately to ONNX (opset 17); outputs match PyTorch to
+\TBD{max |diff|} on real clips. Inference uses ONNX Runtime on the CPU with
+\TBD{threads} intra-op threads. \TBD{INT8: static QDQ quantization calibrated on day and night clips.}
+
+\section{Dataset and Protocol}\label{sec:data}
+We use UCF-Crime~\cite{sultani2018} (1950 files, 320$\times$240, 30\,fps). Fifty Normal videos
+appear twice under different folders; byte-identical copies are removed, leaving 1900 unique
+videos. We follow the official splits: the 14-class 4-fold split (38 training and 12 test videos
+per class) and the anomaly split (1610 training, 290 test). From each training list, 15\% of the
+videos are held out per class as validation. Every split is at video level, so all clips of a
+video belong to one split. Epochs, checkpoints and the alert threshold are selected on validation
+only; each test set is evaluated once with fixed settings. Frame-level ground truth uses each
+test video's actual frame count.
+
+Roughly half of the anomaly videos are recorded at night. Normal videos carry no day/night
+label, so we infer it from frame saturation and brightness with thresholds calibrated on 947
+manually labelled anomaly videos (balanced accuracy \TBD{value}), and report day and night
+test subsets separately.
+
+\section{Experimental Setup}
+Features and heads are trained on Kaggle (2$\times$NVIDIA T4). Results are mean $\pm$ standard
+deviation over folds (Task~A, 3 seeds per fold) or over 5 seeds (Task~B). Metrics: accuracy,
+macro-F1, per-class precision/recall/F1 and confusion matrix (Task~A); video AUC, frame AUC,
+frame AP and precision/recall at the validation threshold (Task~B). The edge benchmark uses
+\TBD{Pi OS version, Python, ONNX Runtime version}; each latency figure follows 20 warm-up and
+200 timed runs and reports median and 95th percentile. Thermal runs last 30 minutes with and
+without active cooling.
+
+\section{Results}\label{sec:results}
+\TBD{Copy Tables 1--5 from docs/v2_results.md. Preliminary Kaggle numbers in the notes:
+14-class linear 33.2$\pm$0.3\% acc / 31.8$\pm$0.3\% macro-F1 (chance 7.1\%);
+binary MLP video AUC 0.912$\pm$0.005, frame AUC 0.806$\pm$0.010, frame AP 0.205.
+Use only numbers reproduced in Step 3.}
+
+\subsection{Recognition and anomaly detection}
+\subsection{On-device latency and throughput}
+\subsection{Alert behaviour: event-to-alert time and false alarms}
+\subsection{Ablations}
+v1 (ResNet18-LSTM) vs.\ X3D-S vs.\ MoViNet; crop strategy; RGB vs.\ grayscale-3ch; motion gate
+and $k$-of-$n$ rule on/off; FP32 vs.\ INT8; day vs.\ night.
+
+\section{Discussion and Limitations}
+The binary stage is strong while 14-class recognition is weak, so the cascade is built on the
+binary decision and the class label is presented as assistive with a confidence floor. UCF-Crime
+is 320$\times$240 CCTV footage, unlike the Pi NoIR camera; we therefore evaluate on our own
+recorded clips \TBD{external test}. If Normal videos are mostly daytime, a model can learn
+darkness as a cue for anomaly; the day/night breakdown tests this. Sustained load can throttle
+the CPU; we report temperature and throughput over time.
+
+\section{Ethics}
+Surveillance footage contains identifiable people. We use UCF-Crime under its terms of use, and
+our own recordings were made with written consent of all participants
+\TBD{ethics approval reference}. Alert e-mails and remote access are restricted to a private
+Tailscale network; credentials are kept out of the code.
+
+\section{Conclusion}
+\TBD{2--3 sentences after results are final.}
+
+\bibliographystyle{IEEEtran}
+\bibliography{refs}
+\end{document}
